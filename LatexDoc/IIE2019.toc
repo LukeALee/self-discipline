@@ -1,0 +1,88 @@
+\contentsline {section}{\numberline {1}统计学习方法}{4}{section.1}
+\contentsline {section}{\numberline {2}感知机}{5}{section.2}
+\contentsline {section}{\numberline {3}K近邻}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}kd树}{6}{subsection.3.1}
+\contentsline {section}{\numberline {4}朴素贝叶斯}{7}{section.4}
+\contentsline {section}{\numberline {5}决策树}{8}{section.5}
+\contentsline {subsection}{\numberline {5.1}基本概念}{8}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}决策树的生成}{8}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}ID3算法}{8}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}C4.5算法}{8}{subsubsection.5.2.2}
+\contentsline {subsection}{\numberline {5.3}决策树剪枝}{9}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}CART算法}{9}{subsection.5.4}
+\contentsline {subsubsection}{\numberline {5.4.1}最小二乘回归树}{9}{subsubsection.5.4.1}
+\contentsline {subsubsection}{\numberline {5.4.2}CART决策树}{10}{subsubsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.3}CART剪枝}{10}{subsubsection.5.4.3}
+\contentsline {section}{\numberline {6}线性回归}{11}{section.6}
+\contentsline {subsection}{\numberline {6.1}线性回归的收缩与子集}{11}{subsection.6.1}
+\contentsline {section}{\numberline {7}逻辑斯蒂回归与最大熵模型}{13}{section.7}
+\contentsline {subsection}{\numberline {7.1}逻辑斯蒂回归模型}{13}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}最大熵模型}{13}{subsection.7.2}
+\contentsline {section}{\numberline {8}支持向量机}{14}{section.8}
+\contentsline {section}{\numberline {9}EM算法及其推广}{15}{section.9}
+\contentsline {section}{\numberline {10}隐马尔科夫模型}{16}{section.10}
+\contentsline {subsection}{\numberline {10.1}评估观察序列概率}{16}{subsection.10.1}
+\contentsline {subsubsection}{\numberline {10.1.1}前向算法}{16}{subsubsection.10.1.1}
+\contentsline {subsubsection}{\numberline {10.1.2}后向算法}{16}{subsubsection.10.1.2}
+\contentsline {subsubsection}{\numberline {10.1.3}常用概率计算}{17}{subsubsection.10.1.3}
+\contentsline {subsection}{\numberline {10.2}模型的参数估计}{17}{subsection.10.2}
+\contentsline {subsubsection}{\numberline {10.2.1}给定状态序列和观测序列}{17}{subsubsection.10.2.1}
+\contentsline {subsubsection}{\numberline {10.2.2}鲍姆-韦尔奇(Baum-Welch)算法（也就是EM算法）}{18}{subsubsection.10.2.2}
+\contentsline {subsection}{\numberline {10.3}隐藏状态序列预测问题}{18}{subsection.10.3}
+\contentsline {section}{\numberline {11}条件随机场}{20}{section.11}
+\contentsline {subsection}{\numberline {11.1}什么样的问题需要CRF模型}{20}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}条件随机场}{20}{subsection.11.2}
+\contentsline {subsubsection}{\numberline {11.2.1}线性链条件随机场的参数化形式}{20}{subsubsection.11.2.1}
+\contentsline {subsection}{\numberline {11.3}概率计算}{22}{subsection.11.3}
+\contentsline {section}{\numberline {12}面经}{23}{section.12}
+\contentsline {subsection}{\numberline {12.1}腾讯 TEG NLP组}{23}{subsection.12.1}
+\contentsline {subsection}{\numberline {12.2}腾讯云}{23}{subsection.12.2}
+\contentsline {subsection}{\numberline {12.3}华为---算法工程师}{24}{subsection.12.3}
+\contentsline {subsection}{\numberline {12.4}百度深圳---NLP---现场面}{24}{subsection.12.4}
+\contentsline {subsection}{\numberline {12.5}今日头条 算法工程师}{25}{subsection.12.5}
+\contentsline {subsection}{\numberline {12.6}一些可能会问到的问题}{28}{subsection.12.6}
+\contentsline {subsection}{\numberline {12.7}数学概念}{29}{subsection.12.7}
+\contentsline {subsection}{\numberline {12.8}迁移学习}{37}{subsection.12.8}
+\contentsline {section}{\numberline {13}特征工程}{38}{section.13}
+\contentsline {section}{\numberline {14}模型评估及优化}{39}{section.14}
+\contentsline {subsection}{\numberline {14.1}准确率的局限性}{39}{subsection.14.1}
+\contentsline {subsection}{\numberline {14.2}精确率与召回率的权衡}{39}{subsection.14.2}
+\contentsline {subsection}{\numberline {14.3}RMSE的“意外”}{39}{subsection.14.3}
+\contentsline {subsection}{\numberline {14.4}ROC曲线}{39}{subsection.14.4}
+\contentsline {subsection}{\numberline {14.5}余弦距离}{40}{subsection.14.5}
+\contentsline {subsection}{\numberline {14.6}模型评估的方法}{40}{subsection.14.6}
+\contentsline {subsection}{\numberline {14.7}超参数调优}{40}{subsection.14.7}
+\contentsline {subsection}{\numberline {14.8}过拟合与欠拟合}{40}{subsection.14.8}
+\contentsline {subsection}{\numberline {14.9}初始化参数方法}{41}{subsection.14.9}
+\contentsline {subsection}{\numberline {14.10}batch normalization}{41}{subsection.14.10}
+\contentsline {subsection}{\numberline {14.11}SGD}{42}{subsection.14.11}
+\contentsline {subsection}{\numberline {14.12}AdaGrad}{42}{subsection.14.12}
+\contentsline {section}{\numberline {15}采样}{43}{section.15}
+\contentsline {section}{\numberline {16}词向量}{44}{section.16}
+\contentsline {subsection}{\numberline {16.1}word2vec}{44}{subsection.16.1}
+\contentsline {subsection}{\numberline {16.2}fastText}{44}{subsection.16.2}
+\contentsline {subsection}{\numberline {16.3}GloVec:Global Vectors for Word Representation}{44}{subsection.16.3}
+\contentsline {subsection}{\numberline {16.4}encoder-decoder+seq2seq}{44}{subsection.16.4}
+\contentsline {subsection}{\numberline {16.5}Attention Is All Your Need: Transformer}{45}{subsection.16.5}
+\contentsline {subsection}{\numberline {16.6}模型对比}{46}{subsection.16.6}
+\contentsline {subsection}{\numberline {16.7}Elmo：Embedding from Language Models}{46}{subsection.16.7}
+\contentsline {subsection}{\numberline {16.8}GPT：Generative Pre-Training}{46}{subsection.16.8}
+\contentsline {subsection}{\numberline {16.9}Bert：Bidirectional Encoder Representations from Transformers}{46}{subsection.16.9}
+\contentsline {section}{\numberline {17}主题模型}{47}{section.17}
+\contentsline {subsection}{\numberline {17.1}LSI/LSA}{47}{subsection.17.1}
+\contentsline {subsection}{\numberline {17.2}PLSA}{47}{subsection.17.2}
+\contentsline {subsection}{\numberline {17.3}LDA}{48}{subsection.17.3}
+\contentsline {subsection}{\numberline {17.4}lda2vec}{48}{subsection.17.4}
+\contentsline {section}{\numberline {18}强化学习}{49}{section.18}
+\contentsline {section}{\numberline {19}集成学习}{50}{section.19}
+\contentsline {subsection}{\numberline {19.1}bagging}{50}{subsection.19.1}
+\contentsline {subsection}{\numberline {19.2}RF}{50}{subsection.19.2}
+\contentsline {subsection}{\numberline {19.3}boosting}{50}{subsection.19.3}
+\contentsline {subsection}{\numberline {19.4}Adaboost}{51}{subsection.19.4}
+\contentsline {subsection}{\numberline {19.5}提升树}{51}{subsection.19.5}
+\contentsline {subsection}{\numberline {19.6}Gradient Boosting}{51}{subsection.19.6}
+\contentsline {subsection}{\numberline {19.7}GBDT}{51}{subsection.19.7}
+\contentsline {subsection}{\numberline {19.8}XGBOOST}{54}{subsection.19.8}
+\contentsline {subsection}{\numberline {19.9}lightgbm}{55}{subsection.19.9}
+\contentsline {subsection}{\numberline {19.10}常见问题总结}{55}{subsection.19.10}
+\contentsline {section}{\numberline {20}学习心得}{57}{section.20}

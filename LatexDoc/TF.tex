@@ -1,0 +1,313 @@
+% 导言区
+\documentclass[UTF8]{article}%book ，report ,letter
+\usepackage{diagbox}
+\usepackage{ctexcap}%采用中文标题宏包（标题是中文的）
+\usepackage{graphicx}%图片包
+\usepackage{color}%彩色文本
+\usepackage{amsmath}
+\usepackage{caption2}
+\usepackage{enumerate}
+\usepackage{hyperref} %超链接包
+\usepackage{amsmath}
+\usepackage{hyperref} %超链接包
+%覆盖超链接红框
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black
+}
+\usepackage{minted}
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{mygreen}{rgb}{0,0.6,0}  
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}  
+\definecolor{mymauve}{rgb}{0.58,0,0.82}  
+\lstset{ %  
+	numbers=left,
+	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}  
+	basicstyle=\footnotesize,        % the size of the fonts that are used for the code  
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace  
+	breaklines=true,                 % sets automatic line breaking  
+	captionpos=bl,                    % sets the caption-position to bottom  
+	commentstyle=\color{mygreen},    % comment style  
+	deletekeywords={...},            % if you want to delete keywords from the given language  
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code  
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8  
+	frame=single,                    % adds a frame around the code  
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)  
+	keywordstyle=\color{blue},       % keyword style  
+	%language=Python,                 % the language of the code  
+	morekeywords={*,in},            % if you want to add more keywords to the set  
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)  
+	numbersep=5pt,                   % how far the line-numbers are from the code  
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers  
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))  
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'  
+	showstringspaces=false,          % underline spaces within strings only  
+	showtabs=false,                  % show tabs within strings adding particular underscores  
+	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered  
+	stringstyle=\color{orange},     % string literal style  
+	tabsize=2,                       % sets default tabsize to 2 spaces  
+	%title=myPython.py                   % show the filename of files included with \lstinputlisting; also try caption instead of title  
+}
+
+\title{\heiti Tensorflow}
+\author{\kaishu LukeAlanLee}
+\date{\today}
+
+\begin{document}
+	\tableofcontents
+	\maketitle
+	
+	\section{简介}
+		\subsection{推荐配置}
+			\begin{itemize}
+				\item windows: 10-1809
+				\item python:3.7.0
+				\item cuda:10.0
+				\item cudnn:7.4.2
+				\item tensorflow-gpu:1.31.1
+			\end{itemize}
+		\subsection{计算图}
+			\begin{itemize}
+				\item 定义常量：tf.constant()
+				\item 定义会话：sess=tf.Session(), 关闭会话：sess.close(),可以使用with 管理会话(with tf.Session() as sess)
+				\item 运行会话：sess.run()
+				\item 默认会话：tf.InteractiveSession(),此时可以使用eavl()直接运行张量而不用显示调用会话
+				\item 指定运行设备：tf.device(),CPU/GPU
+				\item 张量类型：
+				\begin{description}
+					\item 常量:tf.constant()
+					\item 变量:tf.Variable()
+					\item 占位符:tf.placeholder(),通常和feed\_dict一起使用来输入数据
+				\end{description}
+				\begin{description}
+					\item[举例：] tf.zeros(),tf.zeros\_like(),tf.ones(),tf.ones\_like()，tf.eye(n)
+					\item[等差数列：] tf.linespace(start,stop,nums),tf.range(start,limit,delta)
+					\item[正态分布：] tf.random\_normal([rows,cols],mean,stddev,seed)
+					\item[截尾正态分布：] tf.truncated\_normal([rows,cols],mean,stddev,seed)
+					\item[伽马分布：] tf.random\_uniform([rows,cols],maxval,seed)
+					\item[裁剪张量：] tf.random\_crop(t\_radom,[rows,cols],seed)
+					\item[随机重排：] tf.random\_shuffle(t\_radom)沿t\_radom第一维随机排列张量
+					\item[设置随机种子：] tf\_set\_tandom\_seed()相同种子保证多次运行获得相同随机数（种子只能设为整数值）
+					\item[变量别名：] tf.Variable(tf.zeros[100],name='biases')
+					\item[初始化变量的方法：] 使用常量、已定义的变量都可以初始化新的变量;必须初始化所有变量 tf.global\_variables\_initializer()
+					\item[数据类型转换：] tf.cast(var,dtype)
+					\item[使用Saver类来保存变量：]  saver=tf.Saver()
+					\item[定义placeholder并使用feed\_dict输入：] 举例如下：
+				\end{description}
+				\item \lstinputlisting[language=Python, title=tfTest.py]{codes/tfTest.py}  	
+			\end{itemize}
+			\center
+			%数据类型说明
+			\begin{tabular}[c]{|l|l|}
+				\hline
+				\multicolumn{2}{|c|}{tensorFlow数据类型}\\
+				\hline
+				数据类型 & tensorFlow类型 \\
+				\hline
+				DT\_FLOAT & tf.float32  \\
+				\hline
+				DT\_DOUBLE & tf.float64 \\
+				\hline
+				DT\_int8 & tf.int8  \\
+				\hline
+				DT\_UINT & tf.uint8  \\
+				\hline
+				DT\_STRING & tf.string  \\
+				\hline
+				DT\_BOOL & tf.bool  \\
+				\hline
+				DT\_COMPLEX64 & tf.complex64  \\
+				\hline
+				DT\_QINT32 & tf.qint32  \\
+				\hline
+			\end{tabular}
+			%运算类型
+			\begin{itemize}
+				\item 运算
+				\begin{description}
+					\item[加法运算：]tf.add()
+					\item[矩阵乘法：] tf.mutmul()
+					\item[按元素相除] *
+					\item[矩阵乘标量] tf.scalar\_mul(2,A)
+					\item[按元素相除] tf.div()
+					\item[按元素取余] tf.mod()
+					\item[整数张量除法] tf.truediv(a,b)，先将整数转为浮点类，然后再执行按位除
+				\end{description}
+			\item 数据流图-TensorBoard
+				\begin{description}
+					\item[捕获时间序列变化：] tf.summary.scalar()
+					\item[捕获输出分布：]  tf.summary.histogram()
+					\item[捕获所有摘要：] tf.merge\_all\_summaries()
+					\item[保存摘要：] tf.summary.Filewriter('logdir',sess.graph)
+					\item[tensorBoard：] tensorboard --logdir='logdir'
+				\end{description}
+			\end{itemize}
+		\subsection{从文件读取数据}
+			\flushleft
+			\begin{enumerate}
+				\item 创建文件名列表:使用字符串张量保存或使用files=tf.train.match\_filenams\_once('filename')
+				\item 创建文件队列：之后使用tf.train.string\_input\_producer(files)创建文件队列
+				\item 创建由换行符分隔的文件行的读取器：tf.TextLineReader()
+				\item 从tensor列表中取出tensor放入文件名队列：input\_queue=tf.train.slice\_input\_producer()
+				\item 从文件名队列中提取tensor放入文件队列：image\_batch, label\_batch = tf.train.batch(input\_queue, batch\_size=batch\_size, num\_threads=2, capacity=64)
+				\item 线程协调器： coord=tf.train.Coordinator() ,用来管理之后在Session中启动的所有线程;
+				\item 线程协调器方法：
+				\begin{itemize}
+					\item coord.should\_stop()来查询是否应该终止所有线程,当文件队列（queue）读取完毕，抛出一个OutofRangeError的异常,此时应该结束左右线程
+					\item 使用coord.request\_stop()来发出终止所有线程的命令
+					\item 使用coord.join(threads)把线程加入主线程，等待threads结束\textbf{}
+				\end{itemize}
+				\item 启动线程：tf.train.start\_queue\_runners(coord=coord),由多个或单个线程(使用coord作为线程管理器)，按照设定规则，把文件读入Filename Queue中.
+				\item Example
+			\end{enumerate}
+
+	
+	\section{回归}
+		\subsection{损失函数}
+			\begin{enumerate}
+				\item 平方损失:  tf.square()
+				\item 滑动平均:   tf.reduce(tf.square())
+				\item 交叉熵:  
+				\begin{minted}
+				[mathescape,
+				linenos,
+				numbersep=5pt,
+				gobble=2,
+				frame=lines,
+				framesep=2mm
+				]{Python}
+				entropy=tf.nn.softmax_cross_entorypy_with_logits()
+				loss=tf.reduce_mean(entropy)
+				\end{minted}
+		
+				
+			\end{enumerate}
+		\subsection{正则化}
+			\begin{enumerate}
+				\item L1   tf.reduce\_sum()
+				\item L2  tf.nn.l2\_loss()
+			\end{enumerate}
+		\subsection{优化器}
+			\begin{enumerate}
+				\item \color{red}GD:  \color{black} tf.train.GradientDescentOptimizer(learning\_rate)
+				\item \color{red}momenttum: \color{black}  tf.train.MomentumOptimizer()
+				\item \color{red}Adadleta:  \color{black} tf.train.AdadletaOptimizer()
+				\item \color{red}RMSprop: \color{black}  tf.train.RMSpropOptimizer()
+				\item \color{red}Adagrad: \color{black}  tf.train.AdagradOptimizer()
+				\item \color{red}AdagradDA: \color{black}  tf.train.AdagradDAOptimizer()
+				\item \color{red}Ftrl:  \color{black} tf.train.FtrlOptimizer()
+				\item \color{red}ProximalGD: \color{black}  tf.train.ProximalGradientDescentOptimizer()
+				\item \color{red}ProximalAdagrad: \color{black}  tf.train.ProximalAdagradOptimizer()
+				\item 设置指数衰减学习率  tf.train.ecponential\_decay()
+				\lstinputlisting[language=Python, title=exponentialDecayExample.py]{codes/exponentialDecayExample.py}  	
+			\end{enumerate}
+	
+	\section{神经网络}
+	\subsection{激活函数}
+	\subsection{构建网络}
+		\begin{enumerate}
+		\item threshold：
+		\begin{minted}[mathescape,
+		linenos,
+		numbersep=5pt,
+		gobble=2,
+		frame=lines,
+		framesep=2mm]{Python}
+		def threshold (x):
+			cond = tf.less(x, tf.zeros(tf.shape(x), dtype = x.dtype))
+			out = tf.where(cond, tf.zeros(tf.shape(x)), tf.ones(tf.shape(x)))
+			return out		
+		\end{minted}
+		\item Sigmoid：
+		\begin{minted}[mathescape,
+		linenos,
+		numbersep=5pt,
+		gobble=2,
+		frame=lines,
+		framesep=2mm]{Python}
+		
+		out = tf.sigmoid(h)	
+		\end{minted}
+	
+		\item tanh：
+		\begin{minted}[mathescape,
+		linenos,
+		numbersep=5pt,
+		gobble=2,
+		frame=lines,
+		framesep=2mm]{Python}
+		
+		out = tf.tanh(h)	
+		\end{minted}
+
+		\item ReLu：
+		\begin{minted}[mathescape,
+		linenos,
+		numbersep=5pt,
+		gobble=2,
+		frame=lines,
+		framesep=2mm]{Python}
+		
+		out = tf.nn.relu(h)	
+		\end{minted}
+		
+		\item Softmax：
+		\begin{minted}[mathescape,
+		linenos,
+		numbersep=5pt,
+		gobble=2,
+		frame=lines,
+		framesep=2mm]{Python}
+		
+		#$y_i=\frac{\exp(x_i)}{\sum_j\exp(x_j)}$
+		out = tf.nn.softmax(h)	
+		\end{minted}
+		\end{enumerate}
+	\subsection{卷积神经网络}
+	\begin{enumerate}
+		\item 添加卷积层：
+		\begin{minted}[mathescape,
+		linenos,
+		numbersep=5pt,
+		gobble=2,
+		frame=lines,
+		framesep=2mm]{Python}
+		
+		tf.nn.conv2d(input ,filter,strides,padding,
+			use_cudnn_on_GPU=None,data_format=None,name=None)
+		\end{minted}
+		\item 池化层
+		\begin{itemize}
+			\item 最大池化
+		\begin{minted}[mathescape,
+		linenos,
+		numbersep=5pt,
+		gobble=2,
+		frame=lines,
+		framesep=2mm]{Python}
+		
+		tf.nn.max_pool(value,kszie,strides,padding,data_format='NHWC',name=None)
+				\end{minted}
+		\end{itemize}
+		\begin{minted}[mathescape,
+		linenos,
+		numbersep=5pt,
+		gobble=2,
+		frame=lines,
+		framesep=2mm]{Python}
+		
+		out = tf.nn.relu(h)	
+		\end{minted}
+	\end{enumerate}
+	\subsection{图片相关}
+		\begin{enumerate}
+			\item tf.gfile.FastGFile(path,decodestyle) 
+			\begin{description}
+				\item[函数功能：] 实现对图片的读取。 
+				\item[函数参数：] (1)path：图片所在路径 (2)decodestyle:图片的解码方式。(‘r’:UTF-8编码; ‘rb’:非UTF-8编码)
+			\end{description}
+			
+			
+		\end{enumerate}
+\end{document}

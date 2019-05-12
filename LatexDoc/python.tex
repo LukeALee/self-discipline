@@ -1,0 +1,85 @@
+% 导言区
+\documentclass[UTF8]{article}%book ，report ,letter
+\usepackage{geometry}%页边距设置
+\geometry{a4paper,scale=0.9}
+\usepackage{ctex}%引入中文包，使得中文可以正常显示
+\usepackage{diagbox}
+\usepackage{algorithm2e,setspace}
+
+
+\title{\heiti python}
+\author{\kaishu 李晨辉}
+\date{\today}
+
+
+% 正文区（文稿区）
+\begin{document}
+	\maketitle %让头部内容在正文区显示
+	%\begin{verbatim}
+	%之间的文本将直接打印
+	%\end{verbatim} 
+	\flushleft
+	\begin{enumerate}
+		\item 生成器与迭代器的区别
+			\begin{description}
+				\item [a]. 有iter()和next()魔法方法的对象，都是迭代器(可以为你的类添加迭代器行为)；
+				\item[b.] 生成器是一个用于创建迭代器的工具，它们的写法类似标准的函数，但当它们要返回数据时会使用yield语句。每次对生成器调用next()时，它会从上次离开位置恢复执行
+				\item[c.] 用生成器来完成的操作同样可以用基于类的迭代器来完成，但生成器的写法更为紧凑，因为它会自动创建 iter() 和 next() 方法。
+				\item[d.] 局部变量和执行状态会在每次调用之间自动保存, 当生成器终结时，它们还会自动引发 StopIteration。
+			\end{description}
+		\item Python中，函数名为什么可以当作参数用？
+		\begin{itemize}
+			\item python中函数是第一等对象，第一等对象的一般特征：
+				\begin{description}
+					\item[a.] 运行时（runtime）创建
+					\item[b.] 将变量或者元素赋值在一个数据结构当中
+					\item[c.] 可以作为一个参数传递给一个函数
+					\item[d.] 可以作为函数的结果返回
+				\end{description}
+			\item python 中一切皆对象，int是对象，函数是对象，class 也是一种对象，跟其它对象一样是最终继承自PyObject，函数可以像任何对象那样进行赋值、传递、名字重绑定、赋值、装进容器、垃圾回收
+			
+		\end{itemize}
+	\end{enumerate}
+	\center
+	\begin{tabular}[c]{|c|c|c|}
+		\hline
+		\multicolumn{3}{|c|}{如何追女孩的建议}\\
+		\hline 
+		\diagbox{财气}{建议}{颜值} & 帅& 挫\\
+		\hline
+		有钱花 & 没啥好说的 & 没啥好说的 \\
+		\hline
+		叮当响 & 没啥好说的 & 没啥好说的  \\
+		\hline
+	\end{tabular}
+	\begin{table}[hb] 
+		\caption[短标题]{装模做样的表格}
+		\begin{center}
+			\begin{tabular}{c}
+				\hline
+				这是一个表格\\
+				\hline
+			\end{tabular}
+		\end{center}	
+	\end{table}
+			%伪代码
+	\begin{algorithm}
+		\setstretch{1.35}
+		\SetAlgoLined
+		\KwData{this text}
+		\KwResult{how to write algorithm with \LaTeX2e }
+		initialization\;
+		\For{not at end of this document}{
+			read current\;
+			\eIf{understand}{
+				go to next section\;
+				current section becomes this one\;
+			}{
+				go back to the beginning of current section\;
+			}
+		}
+		\caption{How to write algorithms}
+	\end{algorithm}
+
+	你好，\LaTeX
+\end{document}

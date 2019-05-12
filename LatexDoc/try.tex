@@ -1,0 +1,45 @@
+% 导言区
+\documentclass[UTF8]{article}%book ，report ,letter
+
+\usepackage{ctex}%引入中文包，使得中文可以正常显示
+\usepackage{diagbox}
+%\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage[noend,compatible]{algpseudocode}
+% Use the  Input / Output
+\renewcommand{\algorithmicrequire}{ \textbf{INPUT:}} %Use Input in the format of Algorithm  
+\renewcommand{\algorithmicensure}{ \textbf{OUTPUT:}} %UseOutput in the format of Algorithm  
+\makeatletter\renewcommand{\ALG@name}{\textbf{算法}} \makeatother
+\title{\heiti python}
+\author{\kaishu 李晨辉}
+\date{\today}
+
+
+% 正文区（文稿区）
+\begin{document}
+	\maketitle %让头部内容在正文区显示
+	%\begin{verbatim}
+	%之间的文本将直接打印
+	%\end{verbatim} 
+		\begin{algorithm}[b]
+		\caption{Exact Greedy Algorithm for Split Finding} %算法的名字
+		\label{algMergeSubCluste}
+		\begin{algorithmic}[1]
+			\REQUIRE $I, instance set of current node$
+			\REQUIRE $d, feature dimension$
+			\STATE$gain \gets 0$
+			\STATE$G \leftarrow \sum_{i \in I} g_{i}, H \leftarrow \sum_{i \in I} h_{i}$
+			\FOR {$k=1$ to $n$}  
+				\STATE$G \leftarrow 0, H \leftarrow 0$
+				\FOR {$ j$ in sorted($I$,by $x_{jk})$}
+					\STATE$G_{L} \leftarrow G_{L}+g_{j}, \quad H_{L} \leftarrow H_{L}+h_{j}$
+					\STATE$G_{R} \leftarrow G-G_{L}, H_{R} \leftarrow H-H_{L}$
+					\STATE$score\leftarrow \max \left(score,\frac{G_{L}^{2}}{H_{L}+\lambda}+\frac{G_{R}^{2}}{H_{R}+\lambda}-\frac{G^{2}}{H+\lambda}\right)$
+				\ENDFOR
+			\ENDFOR
+		\ENSURE Split(包括选用的特征，分裂阈值) with max score
+		\end{algorithmic}
+	\end{algorithm}
+
+	你好，\LaTeX
+\end{document}
