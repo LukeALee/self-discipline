@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "brand": "Lil'Log 精读",
+    "topic": "Scaling Laws 缩放定律",
+    "total": 12
+  },
+  "cards": [
+    {
+      "type": "cover",
+      "kicker": "Lilian Weng 最新博客 · 中文图解",
+      "title": "缩放定律<br>讲透了",
+      "titleEn": "Scaling Laws, Carefully",
+      "hook": "同样是「越大越好」,<br>为什么 Kaplan 和 Chinchilla<br>会吵起来?",
+      "footer": "12 张图 · 一次读懂 LLM 的底层增长逻辑"
+    },
+    {
+      "type": "content",
+      "tagNum": "01",
+      "tag": "一句话本质",
+      "title": "什么是缩放定律?",
+      "points": [
+        "模型规模 N、数据量 D、算力 C 越大,训练损失 L 越低,而且<b>可预测</b>——遵循幂律。",
+        "在双对数(log-log)坐标里,它就是一条<b>直线</b>。",
+        "本质问题:有限的算力,该怎么在「更大的模型」和「更多的数据」之间分配。"
+      ],
+      "formula": "L 随 N、D、C 幂律下降　·　C ≈ 6ND",
+      "symbols": [
+        ["N", "模型参数量"],
+        ["D", "数据 token 数"],
+        ["C", "算力 (FLOPs)"],
+        ["E", "不可约损失"]
+      ]
+    },
+    {
+      "type": "content",
+      "tagNum": "02",
+      "tag": "史前史",
+      "title": "损失早就「可预测」",
+      "subtitle": "在 scaling law 走红之前",
+      "points": [
+        "<b>Amari 1992</b>:推导出 4 类学习曲线,指数为 −2 / −1 / −½,都是幂律。",
+        "<b>Hestness 2017</b>:翻译、图像、语言、语音 4 个领域都呈幂律;<b>改架构只平移曲线、不改斜率</b>。",
+        "<b>Rosenfeld 2020</b>:把误差建成 N 与 D 的联合函数,在小模型上拟合 → 外推到大模型。"
+      ],
+      "formula": "ε ∼ c·D<sup>α</sup> + E"
+    },
+    {
+      "type": "content",
+      "tagNum": "03",
+      "tag": "数据无限区",
+      "title": "Kaplan 2020:<br>把 Scaling Law 带火",
+      "points": [
+        "交叉熵损失 L 分别随 N、D、C 各自呈幂律,跨越多个数量级。",
+        "<b>大模型样本效率更高</b>:更少步数、更少数据就能到达同一损失。",
+        "架构细节(宽度、长宽比)的影响,远不如「纯粹的规模」。",
+        "训练损失与测试损失正相关 —— 这是预训练的基石。"
+      ],
+      "formula": "实验规模:768M–1.5B 参数　·　22M–23B token"
+    },
+    {
+      "type": "content",
+      "tagNum": "04",
+      "tag": "争议焦点",
+      "title": "Kaplan 的分配建议",
+      "subtitle": "后来被认为「让大模型饿肚子」",
+      "points": [
+        "结论:模型应当比数据<b>长得更快</b>。",
+        "算力每 ×10 → 模型 ×5.5,数据只 ×1.8。",
+        "「训一个超大模型,不收敛就提前停」更划算。",
+        "⚠️ 问题出在:拟合出的指数偏大,高估了最优模型规模。"
+      ],
+      "formula": "N<sub>opt</sub> ∝ C<sup>0.73</sup>　（模型增速 &gt; 数据）",
+      "curve": "kaplan"
+    },
+    {
+      "type": "content",
+      "tagNum": "05",
+      "tag": "拨乱反正",
+      "title": "Chinchilla 2022:<br>更审慎的答案",
+      "points": [
+        "固定算力 C ≈ 6ND,问:参数和数据怎么分最优?",
+        "三种方法殊途同归 ——",
+        "① 固定模型、扫 token 预算　② IsoFLOP 抛物线找谷底　③ 直接参数化拟合",
+        "结论:<b>模型翻倍,数据也要翻倍</b>。"
+      ],
+      "formula": "N<sub>opt</sub> ∝ C<sup>0.5</sup>　（模型 ≈ 数据 同步增长）",
+      "curve": "chinchilla"
+    },
+    {
+      "type": "content",
+      "tagNum": "06",
+      "tag": "名场面",
+      "title": "70B 打赢 280B",
+      "subtitle": "同样算力下的实锤",
+      "points": [
+        "<b>Gopher</b>:280B 参数,只喂 300B token。",
+        "<b>Chinchilla</b>:70B 参数,但喂 1.4T token。",
+        "小了 4 倍、数据多约 4 倍 —— 结果<b>全面胜出</b>。",
+        "结论:当时大多数大模型,其实都「训练不足」。"
+      ],
+      "formula": "更小的模型 + 更多的数据 &gt; 更大的模型 + 更少的数据"
+    },
+    {
+      "type": "content",
+      "tagNum": "07",
+      "tag": "和解",
+      "title": "他俩其实不矛盾",
+      "subtitle": "0.73 vs 0.5 怎么调和",
+      "points": [
+        "<b>差异① 规模不同</b>:Kaplan 多用小模型,在 log-log 上外推,微小误差被放大。",
+        "<b>差异② embedding 参数</b>:小模型里它占比不小,算不算它,结论就变。",
+        "<b>Pearce & Song 2024</b>:局部指数 g 随算力增大而<b>收敛到 0.5</b>;在小模型区恰好 ≈ 0.73。"
+      ],
+      "formula": "N = N<sub>\\E</sub> + ω·N<sub>\\E</sub><sup>1/3</sup>"
+    },
+    {
+      "type": "content",
+      "tagNum": "08",
+      "tag": "为什么",
+      "title": "为什么偏偏是幂律?",
+      "subtitle": "两个主流假设",
+      "points": [
+        "<b>数据流形维度说</b>(Sharma & Kaplan):模型把 d 维流形切成 O(N) 块,分辨率 ∼ N<sup>−1/d</sup>,天然是幂律。",
+        "<b>技能量子化说</b>(Michaud / Brill):知识被一块块离散学习,技能频率呈幂律 → 先学常见、后学稀有 → 损失平滑幂律下降。",
+        "幂律也广见于 Zipf 定律、无标度网络、城市规模等复杂系统。"
+      ]
+    },
+    {
+      "type": "content",
+      "tagNum": "09",
+      "tag": "数据墙",
+      "title": "数据不够用了怎么办?",
+      "subtitle": "数据受限区的缩放",
+      "points": [
+        "经典定律假设数据「无限且不重复」,但高质量唯一 token 正在耗尽。",
+        "D 必须是<b>清洗后</b>的数据;重复数据会引发<b>双重下降</b>(loss 先变差再变好)。",
+        "<b>Muennighoff 2023</b>:重复 token 价值指数衰减;r<sub>N</sub> &lt; r<sub>D</sub> → <b>宁可多训几轮,也别一味堆参数</b>。",
+        "<b>Lovelace 2026</b>:显式过拟合惩罚 ∝ (N/U<sub>D</sub>);强 weight decay 能缓解。"
+      ],
+      "formula": "D = U<sub>D</sub>(1 + R<sub>D</sub>)　·　唯一 token × (1 + 重复次数)"
+    },
+    {
+      "type": "content",
+      "tagNum": "10",
+      "tag": "避坑",
+      "title": "拟合 Scaling Law<br>有多坑",
+      "points": [
+        "结果对「琐碎」选择极度敏感:怎么数参数、精度取整到几位、loss 是求和还是平均。",
+        "只在小模型上拟合,却要外推几个数量级 —— 舍入误差也会被放大成巨大偏差。",
+        "<b>Besiroglu 2024</b> 复现发现:Huber 损失取平均(而非求和)导致优化早停;α、β 只保留 2 位有效数字,让 A、B 看着更离谱。",
+        "前提:除了「规模」,架构 / 优化器 / 学习率 / 数据配比都要保持不变,且都已调好。"
+      ]
+    },
+    {
+      "type": "end",
+      "tag": "划重点",
+      "title": "记住这 4 条",
+      "points": [
+        "① 小规模拟合、大规模外推,务必<b>谨慎</b>。",
+        "② 算力在「模型 × 数据」间<b>均衡分配</b>(Chinchilla:翻倍一起翻)。",
+        "③ 数据受限时:<b>控制重复 + 配强 weight decay</b>。",
+        "④ 拟合时:除规模外,<b>一切保持不变</b>。"
+      ],
+      "footer": "原文:Lilian Weng《Scaling Laws, Carefully》<br>2026.06 · lilianweng.github.io",
+      "cta": "觉得有用就点赞收藏 🔖 转发给一起卷的同学"
+    }
+  ]
+}
